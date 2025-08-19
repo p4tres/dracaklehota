@@ -1,7 +1,7 @@
 using DrDWebAPP.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-
+// koment
 
 var builder = WebApplication.CreateBuilder(args);
 
