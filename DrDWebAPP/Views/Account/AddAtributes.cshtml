@@ -1,0 +1,29 @@
+﻿@model DrDWebAPP.Models.Character
+   
+@{
+    ViewData["Title"] = "AddAtributes";
+}
+
+<form asp-controller="Account" asp-action="AddAtributes" method="post">
+    <div>
+        <label asp-for="CharInteligent" class=" mt-4">Inteligencia</label>
+        <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharInteligent" />
+    </div>
+    <div>
+        <label asp-for="CharStrenght" class=" mt-4">Sila</label>
+        <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharStrenght" />
+    </div>
+    <div>
+        <label asp-for="CharAgility" class=" mt-4">Obratnost</label>
+        <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharAgility" />
+    </div>
+    <div>
+        <label asp-for="CharEndurance" class=" mt-4">Odolnost</label>
+        <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharEndurance" />
+    </div>
+    <div>
+        <label asp-for="CharCharisma" class=" mt-4">Inteligencia</label>
+        <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharCharisma" />
+    </div>
+    <button mt-4">Pridat atributy</button>
+</form>

@@ -1,0 +1,39 @@
+﻿@model DrDWebAPP.Models.UserModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>REGISTER</h1>
+<p>Pre pokracovanie je nutne sa prihlasit</p>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+    <div>
+        <label asp-for="Name" class=" mt-4"></label>
+        <input class="form-control" type="text" placeholder="Zadaj meno" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class=" mt-4">Surname</label>
+        <input class="form-control" type="text" placeholder="Zadaj priezvisko" asp-for="Surname" />
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class=" mt-4">UserName</label>
+        <input class="form-control" type="text" placeholder="Zadaj uzivatelske meno" asp-for="Nickname" />
+        <span asp-validation-for="Nickname" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class=" mt-4">Password</label>
+        <input class="form-control" type="password" placeholder="Zadaj heslo" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div>
+        <label class=" mt-4">Confirm Password</label>
+        <input class="form-control" type="password" placeholder="Zadaj znova heslo" asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button type="submit">Registracia</button>
+</form>

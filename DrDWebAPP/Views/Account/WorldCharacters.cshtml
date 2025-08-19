@@ -1,0 +1,86 @@
+﻿@model List<Character>
+
+@{
+    ViewData["Title"] = "WorldCharacters";
+}
+<div class="top-center-banner">
+    @ViewBag.UserName
+</div>
+<input type="hidden" name="UserType" value="2" />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Meno</th>
+            <th>Rasa</th>
+            <th>Profesia</th>
+            <th>Level</th>
+            <th>XP</th>
+            <th>Zivoty</th>
+            <th>Detail</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ch in Model)
+        {
+            <tr>
+                <td>@ch.CharName</td>
+                <td>@ch.CharRace</td>
+                <td>@ch.CharProfession</td>
+                <td>@ch.CharLevel</td>
+                <td>@ch.CharExperiencePoints</td>
+                <td>@ch.CharHitPoints</td>
+                <td>
+                    <input type="checkbox" class="show-details" data-id="@ch.CharacterId" />
+                </td>
+            </tr>
+            <tr id="details-@ch.CharacterId" style="display:none;">
+                <td colspan="7">
+                    <form asp-controller="Account" asp-action="SavingChangesChar" method="post" style="margin-bottom: 2rem;">
+                        <input type="hidden" name="CharacterID" value="@ch.CharacterId" />
+                        <input type="hidden" name="DungeonID" value="@ch.DunID" />
+
+                        <!-- Horné dve časti vedľa seba -->
+                        <div style="display: flex; justify-content: space-between; gap: 2rem; max-width: 1000px; margin: 0 auto;">
+                            <!-- Ľavá strana (teraz pôvodná pravá) -->
+                            <div style="flex: 1;">
+                                <p>Sila: @ch.CharStrenght</p>
+                                <p>Inteligencia: @ch.CharInteligent</p>
+                                <p>Odolnosť: @ch.CharEndurance</p>
+                                <p>Obratnosť: @ch.CharAgility</p>
+                                <p>Charizma: @ch.CharCharisma</p>
+                            </div>
+
+                            <!-- Pravá strana (teraz pôvodná ľavá) -->
+                            <div style="flex: 1;">
+                                <p>Meno: @ch.CharName</p>
+                                <p>Rasa: @ch.CharRace</p>
+                                <p>Profesia: @ch.CharProfession</p>
+                                <p>Hit points: <input type="number" name="CharHitPoints" value="@ch.CharHitPoints" /></p>
+                                <p>Level: <input type="number" name="CharLevel" value="@ch.CharLevel" /></p>
+                                <p>Experience Points: <input type="number" name="CharExperiencePoints" value="@ch.CharExperiencePoints" /></p>
+                            </div>
+                        </div>
+                        <div style="max-width: 600px; margin: 2rem auto; text-align: center;">
+                            <p>Mana: <input type="number" name="CharMana" value="@ch.CharMana" /></p>
+                            <p>Zbrane: <input type="text" name="CharWeapons" value="@ch.CharWeapons" class="scroll-input"></p>
+                            <p>Obranné predmety: <input type="text" name="CharDefense" value="@ch.CharDefense" class="scroll-input" /></p>
+                            <p>Inventár: <input type="text" name="CharItems" value="@ch.CharItems" class="scroll-input" /></p>
+                        </div>
+                        <input type="hidden" name="UserType" value="2" />
+                        <button type="submit" class="btn btn-primary mt-4">Uložiť zmeny</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    document.querySelectorAll('.show-details').forEach(cb => {
+        cb.addEventListener('change', function () {
+            const id = this.dataset.id;
+            const row = document.getElementById(`details-${id}`);
+            row.style.display = this.checked ? 'table-row' : 'none';
+        });
+    });
+</script>

@@ -1,0 +1,27 @@
+﻿@model DrDWebAPP.Models.AddCharactersViewModel
+@{
+    ViewData["Title"] = "AddCharacters";
+
+}
+<h2>Priradenie postav do sveta</h2>
+
+<form asp-action="AddCharacters" method="post">
+    <input type="hidden" asp-for="DunID"/>
+
+    <table>
+        <tr>
+            <th>Meno</th>
+            <th>Vyber</th>
+        </tr>
+            @foreach(var character in Model.AvailableCharacters)
+            {
+                <tr>
+                    <td>@character.CharName</td>
+                    <td>
+                        <input type="checkbox" name="SelectedCharacterIds" value="@character.CharacterId"/>
+                    </td>
+                </tr>
+            }
+    </table>
+    <button type="submit">Pridat do sveta</button>
+</form>

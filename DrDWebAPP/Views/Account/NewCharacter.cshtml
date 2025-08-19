@@ -1,0 +1,66 @@
+﻿@model DrDWebAPP.Models.Character
+@{
+    ViewData["Title"] = "NewCharacter";
+
+}
+
+<form asp-controller="Account" asp-action="NewCharacter" method="post">
+    <div>
+        <label asp-for="CharName" class=" mt-4">Meno</label>
+        <input class="form-control" type="text" placeholder="Zadaj meno postavy" asp-for="CharName" />
+    </div>
+
+    <div>
+        <label asp-for="CharRace" class=" mt-4">Rasa</label>
+        <select asp-for="CharRace" class="form-control">
+            <option value="" disabled selected>Vyber rasu</option>
+            <option value="Človek">Človek</option>
+            <option value="Elf">Elf</option>
+            <option value="Trpaslik">Trpaslik</option>
+            <option value="Kuduk">Kuduk</option>
+            <option value="Hobbit">Hobbit</option>
+            <option value="Barbar">Barbar</option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="CharProfession" class=" mt-4">Profesia</label>
+        <select class="form-control" asp-for="CharProfession">
+            <option value="" disabled selected>Vyber povolanie</option>
+            <option value="Valecnik">Valecnik</option>
+            <option value="Zlodej">Zlodej</option>
+            <option value="Kuzelnik">Kuzelnik</option>
+            <option value="Alchymista">Alchymista</option>
+            <option value="Hranicar">Hranicar</option>
+
+            <option value="Valecnik-Bojovnik">Valecnik-Bojovnik</option>
+            <option value="Valecnik-Sermiar">Valecnik-Sermiar</option>
+            <option value="Zlodej-Siko">Zlodej-Siko</option>
+            <option value="Zlodej-Lupic">Zlodej-Lupic</option>
+            <option value="Kuzelnik-Mag">Kuzelnik-Mag</option>
+            <option value="Kuzelnik-Carodej">Kuzelnik-Carodej</option>
+            <option value="Alchymista-Pyrofor">Alchymista-Pyrofor</option>
+            <option value="Alchymista-Teurg">Alchymista-Teurg</option>
+            <option value="Hranicar-Chodec">Hranicar-Chodec</option>
+            <option value="Hranicar-Druid">Hranicar-Druid</option>
+        </select>
+
+    </div>
+
+    <div>
+        <label asp-for="CharLevel" class="mt-4">Level</label>
+        <input class="form-control" type="number" placeholder="Level" min="0" step="1"asp-for="CharLevel" />
+    </div>
+
+    <div>
+        <label asp-for="CharExperiencePoints" class="mt-4">Experience</label>
+        <input class="form-control" type="number" placeholder="Experience points" min="0" step="1" asp-for="CharExperiencePoints" />
+    </div>
+
+    <div>
+        <label asp-for="CharHitPoints" class="mt-4">Zivoty</label>
+        <input class="form-control" type="number" placeholder="Zivoty" min="0" step="1" asp-for="CharHitPoints" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4">Vytvorit postavu</button>
+</form>

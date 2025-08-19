@@ -1,0 +1,20 @@
+﻿@model DrDWebAPP.Models.Dungeon
+@{
+    ViewData["Title"] = "Profile";
+
+}
+@if(TempData["CreatingError"] != null)
+{
+    <p class="text-danger">@TempData["CreatingError"]</p>
+}
+<form asp-controller="Account" asp-action="CreateWorld" method="post">
+    <div style=" float:initial" class="mt-4">
+        <h1>Vytvorenie noveho sveta</h1>
+    </div>
+    <div style="float:inline-start" class="mt-4">
+        <input class="form-control" placeholder="Zadaj nazov noveho sveta" asp-for="DunName"/>
+    </div>
+    <div style="float:inline-start">
+        <button type="submit">Vytvorit svet</button>
+    </div>
+</form>

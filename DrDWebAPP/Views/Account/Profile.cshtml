@@ -1,0 +1,97 @@
+﻿@model DrDWebAPP.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div style="width: 100%; float: left;">
+    <div class="top-center-banner">
+        @ViewBag.UserName
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Meno</th>
+                <th>Rasa</th>
+                <th>Profesia</th>
+                <th>Level</th>
+                <th>Experience points</th>
+                <th>Zivoty</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ch in Model.Character)
+            {
+                <tr>
+                    <td>@ch.CharName</td>
+                    <td>@ch.CharRace</td>
+                    <td>@ch.CharProfession</td>
+                    <td>@ch.CharLevel</td>
+                    <td>@ch.CharExperiencePoints</td>
+                    <td>@ch.CharHitPoints</td>
+                    <td>
+                        <a asp-action="AddAtributes" asp-route-CharID="@ch.CharacterId">Pridat atributy</a>
+                    </td>
+                    <td>
+                        <a asp-action="CharacterOverView" asp-route-CharID="@ch.CharacterId">Celkovy prehlad postavy</a>
+                    </td>
+                    <td>
+                        @if (TempData["AtributeExists"] != null)
+                        {
+                        <td class="alert auto-hide">@TempData["AtributeExists"]</td>
+                        }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Meno sveta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in Model.Dungeon)
+            {
+                <tr>
+                    <td>@d.DunName</td>
+                    <td>
+                        <a asp-action="AddCharacters" asp-route-DunID="@d.DunID">Pridat hracov</a>
+                    </td>
+                    <td>
+                        <a asp-action="WorldCharacters" asp-route-DunID="@d.DunID">Prehlad sveta</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- ✅ ZMENA: Tlačidlá presunuté sem, dole pod tabuľky -->
+    <div class="button-container">
+        <form method="get" asp-controller="Account" asp-action="NewCharacter">
+            <button type="submit">Vytvoriť postavu</button>
+        </form>
+        <form asp-controller="Account" asp-action="CreateWorld">
+            <button type="submit">Vytvorit svet</button>
+        </form>
+        <form asp-controller="Account" asp-action="LogOut">
+            <button type="submit">Odhlasit sa</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        setTimeout(function () {
+            const messageElement = document.querySelector(".auto-hide");
+            if (messageElement) {
+                messageElement.style.transition = "opacity 0.5s ease-out";
+                messageElement.style.opacity = "0";
+                setTimeout(() => {
+                    messageElement.style.display = "none";
+                }, 500);
+            }
+        }, 5000);
+    </script>
+}

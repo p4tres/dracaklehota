@@ -1,0 +1,28 @@
+﻿@model DrDWebAPP.Models.LoggedInUser
+@{
+    ViewData["Title"] = "Log In";
+    
+}
+
+@if (TempData["LoginError"] != null)
+{
+    <p class="text-danger">@TempData["LoginError"]</p>
+}
+<form action="LogIn" method="post">
+    <div>
+        <label asp-for="UserName" class=" mt-4"></label>
+        <input class="form-control" type="text" placeholder="Zadaj uzivatelske meno" asp-for="UserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password" class=" mt-4"></label>
+        <input class="form-control" type="password" placeholder="Zadaj heslo" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit">Prihlasit sa</button>
+
+</form>
+<div class="text-center">
+    <a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+</div>

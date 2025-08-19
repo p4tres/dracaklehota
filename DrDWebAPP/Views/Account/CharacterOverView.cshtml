@@ -1,0 +1,41 @@
+﻿@model DrDWebAPP.Models.Character
+
+@{
+    ViewData["Title"] = "CharacterOverview";
+}
+<div class="top-center-banner">
+    @ViewBag.UserName
+</div>
+    <form asp-controller="Account" asp-action="SavingChangesChar" method="post" style="margin-bottom: 2rem;">
+        <input type="hidden" name="CharacterID" value="@Model.CharacterId" />
+
+        <!-- Horné dve časti vedľa seba -->
+        <div style="display: flex; justify-content: space-between; gap: 2rem; max-width: 1000px; margin: 0 auto;">
+            <!-- Ľavá strana (teraz pôvodná pravá) -->
+            <div style="flex: 1;">
+                <p>Sila: @Model.CharStrenght</p>
+                <p>Inteligencia: @Model.CharInteligent</p>
+                <p>Odolnosť: @Model.CharEndurance</p>
+                <p>Obratnosť: @Model.CharAgility</p>
+                <p>Charizma: @Model.CharCharisma</p>
+            </div>
+
+            <!-- Pravá strana (teraz pôvodná ľavá) -->
+            <div style="flex: 1;">
+                <p>Meno: @Model.CharName</p>
+                <p>Rasa: @Model.CharRace</p>
+                <p>Profesia: @Model.CharProfession</p>
+                <p>Hit points: <input type="number" name="CharHitPoints" value="@Model.CharHitPoints" /></p>
+                <p>Level: <input type="number" name="CharLevel" value="@Model.CharLevel" /></p>
+                <p>Experience Points: <input type="number" name="CharExperiencePoints" value="@Model.CharExperiencePoints" /></p>
+            </div>
+        </div>
+        <div style="max-width: 600px; margin: 2rem auto; text-align: center;">
+            <p>Mana: <input type="number" name="CharMana" value="@Model.CharMana" /></p>
+            <p>Zbrane: <input type="text" name="CharWeapons" value="@Model.CharWeapons" class="scroll-input"></p>
+            <p>Obranné predmety: <input type="text" name="CharDefense" value="@Model.CharDefense" class="scroll-input" /></p>
+            <p>Inventár: <input type="text" name="CharItems" value="@Model.CharItems" class="scroll-input" /></p>
+        </div>
+        <input type="hidden" name="UserType" value="1"/>
+        <button type="submit" class="btn btn-primary mt-4">Uložiť zmeny</button>
+    </form>
