@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zverp\\source\\repos\\DrDWebAPP\\DrDWebAPP\\DrDWebAPP.csproj": {}
+    "C:\\Users\\zverp\\githubrepos\\dracaklehota\\DrDWebAPP\\DrDWebAPP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zverp\\source\\repos\\DrDWebAPP\\DrDWebAPP\\DrDWebAPP.csproj": {
+    "C:\\Users\\zverp\\githubrepos\\dracaklehota\\DrDWebAPP\\DrDWebAPP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zverp\\source\\repos\\DrDWebAPP\\DrDWebAPP\\DrDWebAPP.csproj",
+        "projectUniqueName": "C:\\Users\\zverp\\githubrepos\\dracaklehota\\DrDWebAPP\\DrDWebAPP.csproj",
         "projectName": "DrDWebAPP",
-        "projectPath": "C:\\Users\\zverp\\source\\repos\\DrDWebAPP\\DrDWebAPP\\DrDWebAPP.csproj",
+        "projectPath": "C:\\Users\\zverp\\githubrepos\\dracaklehota\\DrDWebAPP\\DrDWebAPP.csproj",
         "packagesPath": "C:\\Users\\zverp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zverp\\source\\repos\\DrDWebAPP\\DrDWebAPP\\obj\\",
+        "outputPath": "C:\\Users\\zverp\\githubrepos\\dracaklehota\\DrDWebAPP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
