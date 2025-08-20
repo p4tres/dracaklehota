@@ -5,9 +5,11 @@
 }
 
 <form asp-controller="Account" asp-action="NewCharacter" method="post">
+
     <div>
-        <label asp-for="CharName" class=" mt-4">Meno</label>
+        <label asp-for="CharName" class=" mt-4">Meno Postavy</label>
         <input class="form-control" type="text" placeholder="Zadaj meno postavy" asp-for="CharName" />
+        <span asp-validation-for="CharName" class="text-danger"></span>
     </div>
 
     <div>
@@ -21,6 +23,7 @@
             <option value="Hobbit">Hobbit</option>
             <option value="Barbar">Barbar</option>
         </select>
+        <span asp-validation-for="CharRace" class="text-danger"></span>
     </div>
 
     <div>
@@ -44,23 +47,37 @@
             <option value="Hranicar-Chodec">Hranicar-Chodec</option>
             <option value="Hranicar-Druid">Hranicar-Druid</option>
         </select>
+        <span asp-validation-for="CharProfession" class="text-danger"></span>
 
     </div>
 
     <div>
         <label asp-for="CharLevel" class="mt-4">Level</label>
         <input class="form-control" type="number" placeholder="Level" min="0" step="1"asp-for="CharLevel" />
+        <span asp-validation-for="CharLevel" class="text-danger"></span>
     </div>
 
     <div>
         <label asp-for="CharExperiencePoints" class="mt-4">Experience</label>
         <input class="form-control" type="number" placeholder="Experience points" min="0" step="1" asp-for="CharExperiencePoints" />
+        <span asp-validation-for="CharExperiencePoints" class="text-danger"></span>
     </div>
 
     <div>
-        <label asp-for="CharHitPoints" class="mt-4">Zivoty</label>
-        <input class="form-control" type="number" placeholder="Zivoty" min="0" step="1" asp-for="CharHitPoints" />
+        <label asp-for="CharHitPointsMax" class="mt-4">Maximálne Životy</label>
+        <input class="form-control" type="number" placeholder="Životy" min="0" step="1" asp-for="CharHitPointsMax" />
+        <span asp-validation-for="CharHitPointsMax" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="CharManaMax" class="mt-4">Maximálna Mana</label>
+        <input class="form-control" type="number" placeholder="Mana" min="0" step="1" asp-for="CharManaMax" />
+        <span asp-validation-for="CharManaMax" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary mt-4">Vytvorit postavu</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

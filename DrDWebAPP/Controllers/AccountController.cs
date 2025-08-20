@@ -89,8 +89,7 @@ namespace DrDWebAPP.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> NewCharacter([Bind("CharName, CharRace, CharProfession, CharLevel, CharExperiencePoints, " +
-            "CharHitPoints, UserID")]Character character)
+        public async Task<ActionResult> NewCharacter(Character character)
         {
             if (!ModelState.IsValid)
             {
@@ -98,7 +97,22 @@ namespace DrDWebAPP.Controllers
             }
             var userID = int.Parse(Request.Cookies["UserID"]);
             character.UserID = userID;
-            character.DunID = null;
+            //character.DunID = null;
+            //if (character.CharHitPointsMax == 0)
+            //{
+            //    ModelState.AddModelError("", "Maximalne zivoty nemozu byt 0");
+            //    return View(character);
+            //}
+
+            if(character.CharManaMax == null)
+            {
+                character.CharManaMax = 0;
+            }
+            character.CharMana = character.CharManaMax;
+            character.CharHitPoints = character.CharHitPointsMax;
+
+            //character.CharExperiencePoints ??= 0;
+
             _drdContext.Characters.Add(character);
             await _drdContext.SaveChangesAsync();
             return RedirectToAction("Profile");

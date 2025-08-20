@@ -7,18 +7,25 @@ namespace DrDWebAPP.Models
     {
         [Key]public int CharacterId { get; set; }
 
-        public string? CharName { get; set; }
+        [Required(ErrorMessage ="Meno postavy je povinne")]
+        public string CharName { get; set; }
 
-        public string? CharRace { get; set; }
+        [Required(ErrorMessage ="Rasa postavy je povinna")]
+        public string CharRace { get; set; }
 
-        public string? CharProfession { get; set; }
+        [Required(ErrorMessage ="Povolanie postavy je povinne")]
+        public string CharProfession { get; set; }
 
-        public int? CharLevel{ get; set; }
+        [Range(1,36, ErrorMessage ="Level postavy musi byt medzi 1-36")]
+        public int CharLevel{ get; set; }
 
+        [Required(ErrorMessage = "Skusenosti su povinne")]
+        [Range(0, int.MaxValue, ErrorMessage ="Skusenosti musia byt nezaporne")]
+        public int CharExperiencePoints { get; set; }
 
-        public int? CharExperiencePoints { get; set; }
-
-
+        [Required(ErrorMessage ="Maximalne zivoty su povinne")]
+        [Range(1, 999, ErrorMessage ="Nemozes mat menej ako 0 maximalnych zivotov")]
+        public int CharHitPointsMax { get; set; }
         public int? CharHitPoints { get; set; }
 
 
@@ -35,7 +42,9 @@ namespace DrDWebAPP.Models
 
 
         public string? CharCharisma { get; set; }
+        [Range(0,999, ErrorMessage ="Mana musi byt nezaporna, alebo 0")]
 
+        public int CharManaMax { get; set; }
         public int? CharMana { get; set; }
 
         public string? CharWeapons { get; set; }
@@ -45,7 +54,9 @@ namespace DrDWebAPP.Models
         public string? CharItems { get; set; }
 
         public int? UserID { get; set; }
+        //public User? User { get; set; }
         public int? DunID { get; set; }
+        //public Dungeon? Dungeon { get; set; }
     }
 }
 

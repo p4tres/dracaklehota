@@ -25,13 +25,13 @@
                 <p>Meno: @Model.CharName</p>
                 <p>Rasa: @Model.CharRace</p>
                 <p>Profesia: @Model.CharProfession</p>
-                <p>Hit points: <input type="number" name="CharHitPoints" value="@Model.CharHitPoints" /></p>
+                <p>Maximálne Hit points: @Model.CharHitPointsMax<input type="number" name="CharHitPoints" value="@Model.CharHitPoints" /></p>
                 <p>Level: <input type="number" name="CharLevel" value="@Model.CharLevel" /></p>
                 <p>Experience Points: <input type="number" name="CharExperiencePoints" value="@Model.CharExperiencePoints" /></p>
             </div>
         </div>
         <div style="max-width: 600px; margin: 2rem auto; text-align: center;">
-            <p>Mana: <input type="number" name="CharMana" value="@Model.CharMana" /></p>
+            <p>Maximálna Mana:@Model.CharManaMax <input type="number" name="CharMana" value="@Model.CharMana" /></p>
             <p>Zbrane: <input type="text" name="CharWeapons" value="@Model.CharWeapons" class="scroll-input"></p>
             <p>Obranné predmety: <input type="text" name="CharDefense" value="@Model.CharDefense" class="scroll-input" /></p>
             <p>Inventár: <input type="text" name="CharItems" value="@Model.CharItems" class="scroll-input" /></p>
