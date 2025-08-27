@@ -142,6 +142,7 @@ namespace DrDWebAPP.Controllers
         {
             if (!ModelState.IsValid)
             {
+                Console.WriteLine("Horste mame problem");
                 return View(character);
             }
             if (!int.TryParse(Request.Cookies["CharID"], out int charID))

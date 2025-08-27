@@ -28,7 +28,7 @@ namespace DrDWebAPP.Models
         public int CharHitPointsMax { get; set; }
         public int? CharHitPoints { get; set; }
 
-
+        
         public string? CharInteligent { get; set; }
 
 
