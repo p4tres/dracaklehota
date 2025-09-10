@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DrDWebAPP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f6424c5ec7d6c57bbc544e86cc01c988cf398b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b33f8ef05feb78b7ce91154ea05973c05558645")]
 [assembly: System.Reflection.AssemblyProductAttribute("DrDWebAPP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DrDWebAPP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,4 @@
-﻿@model DrDWebAPP.Models.Character
+﻿@model DrDWebAPP.Models.CharacterAttr
    
 @{
     ViewData["Title"] = "AddAtributes";
@@ -8,22 +8,31 @@
     <div>
         <label asp-for="CharInteligent" class=" mt-4">Inteligencia</label>
         <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharInteligent" />
+        <span asp-validation-for="CharInteligent" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="CharStrenght" class=" mt-4">Sila</label>
         <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharStrenght" />
+        <span asp-validation-for="CharStrenght" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="CharAgility" class=" mt-4">Obratnost</label>
         <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharAgility" />
+        <span asp-validation-for="CharAgility" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="CharEndurance" class=" mt-4">Odolnost</label>
         <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharEndurance" />
+        <span asp-validation-for="CharEndurance" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="CharCharisma" class=" mt-4">Charizma</label>
         <input class="form-control" type="text" placeholder="Format xx/-+y" asp-for="CharCharisma" />
+        <span asp-validation-for="CharCharisma" class="text-danger"></span>
     </div>
     <button class="submit">Pridat atributy</button>
 </form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -49,7 +49,7 @@ namespace DrDWebAPP.Controllers
                 return RedirectToAction("LogIn");
             }
             var userName = Request.Cookies["UserName"];
-            //ViewBag.UserID = userID;
+            //ViewBag.UserID = userID;S
             ViewBag.UserName = userName;
             var model = new ProfileViewModel
             {
@@ -89,29 +89,27 @@ namespace DrDWebAPP.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> NewCharacter(Character character)
+        public async Task<ActionResult> NewCharacter(CharacterInfo characterInfo)
         {
             if (!ModelState.IsValid)
             {
-                return View(character);
+                return View(characterInfo);
             }
             var userID = int.Parse(Request.Cookies["UserID"]);
-            character.UserID = userID;
-            //character.DunID = null;
-            //if (character.CharHitPointsMax == 0)
-            //{
-            //    ModelState.AddModelError("", "Maximalne zivoty nemozu byt 0");
-            //    return View(character);
-            //}
 
-            if(character.CharManaMax == null)
+            var character = new Character
             {
-                character.CharManaMax = 0;
-            }
-            character.CharMana = character.CharManaMax;
-            character.CharHitPoints = character.CharHitPointsMax;
-
-            //character.CharExperiencePoints ??= 0;
+                UserID = userID,
+                CharName = characterInfo.CharName,
+                CharRace = characterInfo.CharRace,
+                CharProfession = characterInfo.CharProfession,
+                CharLevel = characterInfo.CharLevel,
+                CharExperiencePoints = characterInfo.CharExperiencePoints,
+                CharHitPointsMax = characterInfo.CharHitPointsMax,
+                CharHitPoints = characterInfo.CharHitPointsMax,
+                CharManaMax = characterInfo.CharManaMax,
+                CharMana = characterInfo.CharManaMax
+            };
 
             _drdContext.Characters.Add(character);
             await _drdContext.SaveChangesAsync();
@@ -138,12 +136,12 @@ namespace DrDWebAPP.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> AddAtributes( Character character)
+        public async Task<ActionResult> AddAtributes( CharacterAttr characterAttr)
         {
             if (!ModelState.IsValid)
             {
                 Console.WriteLine("Horste mame problem");
-                return View(character);
+                return View(characterAttr);
             }
             if (!int.TryParse(Request.Cookies["CharID"], out int charID))
                 return BadRequest("CharID cookie neexistuje/neplatna.");
@@ -153,11 +151,11 @@ namespace DrDWebAPP.Controllers
             {
                 return NotFound("Postava sa nenasla");
             }
-            existing.CharAgility = character.CharAgility;
-            existing.CharInteligent = character.CharInteligent;
-            existing.CharStrenght = character.CharStrenght;
-            existing.CharCharisma = character.CharCharisma;
-            existing.CharEndurance = character.CharEndurance;
+            existing.CharAgility = characterAttr.CharAgility;
+            existing.CharInteligent = characterAttr.CharInteligent;
+            existing.CharStrenght = characterAttr.CharStrenght;
+            existing.CharCharisma = characterAttr.CharCharisma;
+            existing.CharEndurance = characterAttr.CharEndurance;
 
             await _drdContext.SaveChangesAsync();
             return RedirectToAction("Profile");
@@ -206,9 +204,6 @@ namespace DrDWebAPP.Controllers
                 }
                 return RedirectToAction("WorldCharacters", new {DunID  = dunID});
             }
-            
-            
-            
             
         }
 
