@@ -3,7 +3,11 @@
 @{
     ViewData["Title"] = "AddAtributes";
 }
-
+<div style="width: 100%; float: left;">
+    <div class="top-center-banner">
+        @ViewBag.UserName
+    </div>
+</div>
 <form asp-controller="Account" asp-action="AddAtributes" method="post">
     <div>
         <label asp-for="CharInteligent" class=" mt-4">Inteligencia</label>

@@ -3,8 +3,10 @@
 @{
     ViewData["Title"] = "CharacterOverview";
 }
-<div class="top-center-banner">
-    @ViewBag.UserName
+<div style="width: 100%; float: left;">
+    <div class="top-center-banner">
+        @ViewBag.UserName
+    </div>
 </div>
     <form asp-controller="Account" asp-action="SavingChangesChar" method="post" style="margin-bottom: 2rem;">
         <input type="hidden" name="CharacterID" value="@Model.CharacterId" />
@@ -26,12 +28,20 @@
                 <p>Rasa: @Model.CharRace</p>
                 <p>Profesia: @Model.CharProfession</p>
                 <p>Maximálne Hit points: @Model.CharHitPointsMax<input type="number" name="CharHitPoints" value="@Model.CharHitPoints" /></p>
+                @if(TempData["HitPointsError"] != null)
+                {
+                    <spam class="alert text-danger">@TempData["HitPointsError"]</spam>
+                }
                 <p>Level: <input type="number" name="CharLevel" value="@Model.CharLevel" /></p>
                 <p>Experience Points: <input type="number" name="CharExperiencePoints" value="@Model.CharExperiencePoints" /></p>
             </div>
         </div>
         <div style="max-width: 600px; margin: 2rem auto; text-align: center;">
             <p>Maximálna Mana:@Model.CharManaMax <input type="number" name="CharMana" value="@Model.CharMana" /></p>
+            @if(TempData["ManaError"] != null)
+            {
+                <span class="alert text-danger">@TempData["ManaError"]</span>
+            }
             <p>Zbrane: <input type="text" name="CharWeapons" value="@Model.CharWeapons" class="scroll-input"></p>
             <p>Obranné predmety: <input type="text" name="CharDefense" value="@Model.CharDefense" class="scroll-input" /></p>
             <p>Inventár: <input type="text" name="CharItems" value="@Model.CharItems" class="scroll-input" /></p>

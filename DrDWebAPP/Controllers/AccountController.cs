@@ -49,7 +49,6 @@ namespace DrDWebAPP.Controllers
                 return RedirectToAction("LogIn");
             }
             var userName = Request.Cookies["UserName"];
-            //ViewBag.UserID = userID;S
             ViewBag.UserName = userName;
             var model = new ProfileViewModel
             {
@@ -86,6 +85,8 @@ namespace DrDWebAPP.Controllers
         [HttpGet]
         public IActionResult NewCharacter()
         {
+            var userName = Request.Cookies["UserName"];
+            ViewBag.UserName = userName;
             return View();
         }
         [HttpPost]
@@ -118,6 +119,9 @@ namespace DrDWebAPP.Controllers
         [HttpGet]
         public IActionResult AddAtributes(int CharID)
         {
+            var userName = Request.Cookies["UserName"];
+            ViewBag.UserName = userName;
+
             var atributesExists = _drdContext.Characters.Find(CharID);
             if (atributesExists.CharAgility != null || atributesExists.CharEndurance != null ||
                 atributesExists.CharCharisma != null || atributesExists.CharInteligent != null || atributesExists.CharStrenght != null)
@@ -163,6 +167,9 @@ namespace DrDWebAPP.Controllers
         [HttpGet]
         public IActionResult CharacterOverView(int charID)
         {
+            var userName = Request.Cookies["UserName"];
+            ViewBag.UserName = userName;
+
             var character = _drdContext.Characters.FirstOrDefault(c => c.CharacterId == charID);
             if (character == null) return NotFound();
             return View(character);
@@ -181,7 +188,7 @@ namespace DrDWebAPP.Controllers
             {
                 return NotFound("Postava nebola najdena");
             }
-
+           
             change.CharHitPoints = int.Parse(form["CharHitPoints"]);
             change.CharLevel = int.Parse(form["CharLevel"]);
             change.CharExperiencePoints = int.Parse(form["CharExperiencePoints"]);
@@ -190,9 +197,25 @@ namespace DrDWebAPP.Controllers
             change.CharItems = form["CharItems"];
             change.CharDefense = form["CharDefense"];
 
-            await _drdContext.SaveChangesAsync();
+            bool isError = false;
 
-            if (int.Parse(form["UserType"]) == 1)
+            if(change.CharMana > change.CharManaMax)
+            {
+                TempData["ManaError"] = "Aktuálna mana nesmie byť väčšia ako maximálna mana";
+                isError = true;
+            }
+
+            if(change.CharHitPoints > change.CharManaMax)
+            {
+                TempData["HitPointsError"] = "Aktuálne životy nesmú byť väčšie ako maximálne životy";
+                isError = true;
+            }
+            if (!isError)
+            {
+                await _drdContext.SaveChangesAsync();
+            }
+
+                if (int.Parse(form["UserType"]) == 1)
             {
                 return RedirectToAction("CharacterOverView", new { charID = charID });
             }
@@ -202,13 +225,16 @@ namespace DrDWebAPP.Controllers
                 {
                     return BadRequest("DungeonID parameter je neplatny alebo chyba");
                 }
-                return RedirectToAction("WorldCharacters", new {DunID  = dunID});
+                return RedirectToAction("WorldCharacters", new { DunID = dunID });
             }
             
         }
 
         public IActionResult CreateWorld()
         {
+            var userName = Request.Cookies["UserName"];
+            ViewBag.UserName = userName;
+
             if (TempData["CreatingError"] != null)
             {
                 TempData.Remove("CreatingError");
@@ -237,6 +263,9 @@ namespace DrDWebAPP.Controllers
         [HttpGet]
         public IActionResult AddCharacters(int DunID)
         {
+            var userName = Request.Cookies["UserName"];
+            ViewBag.UserName = userName;
+
             var unassignedCharacters = _drdContext.Characters
                 .Where(c => c.DunID == null)
                 .ToList();
@@ -266,6 +295,9 @@ namespace DrDWebAPP.Controllers
         [HttpGet]
         public IActionResult WorldCharacters(int DunID)
         {
+            var userName = Request.Cookies["UserName"];
+            ViewBag.UserName = userName;
+
             var thisWorld = _drdContext.Characters
                 .Where(c => c.DunID == DunID)
                 .ToList();

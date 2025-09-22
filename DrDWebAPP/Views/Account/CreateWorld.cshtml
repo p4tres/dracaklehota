@@ -3,6 +3,11 @@
     ViewData["Title"] = "Profile";
 
 }
+<div style="width: 100%; float: left;">
+    <div class="top-center-banner">
+        @ViewBag.UserName
+    </div>
+</div>
 @if(TempData["CreatingError"] != null)
 {
     <p class="text-danger">@TempData["CreatingError"]</p>

@@ -6,28 +6,28 @@ namespace DrDWebAPP.Models
     {
         //[Key] public int CharacterId { get; set; }
 
-        [Required(ErrorMessage = "Meno postavy je povinne")]
+        [Required(ErrorMessage = "Meno postavy je povinné")]
         public string CharName { get; set; }
 
-        [Required(ErrorMessage = "Rasa postavy je povinna")]
+        [Required(ErrorMessage = "Rasa postavy je povinná")]
         public string CharRace { get; set; }
 
-        [Required(ErrorMessage = "Povolanie postavy je povinne")]
+        [Required(ErrorMessage = "Povolanie postavy je povinné")]
         public string CharProfession { get; set; }
 
-        [Range(1, 36, ErrorMessage = "Level postavy musi byt medzi 1-36")]
+        [Range(1, 36, ErrorMessage = "Level postavy musí byť medzi 1-36")]
         public int CharLevel { get; set; }
 
-        [Required(ErrorMessage = "Skusenosti su povinne")]
-        [Range(0, int.MaxValue, ErrorMessage = "Skusenosti musia byt nezaporne")]
+        [Required(ErrorMessage = "Skúsenosti sú povinné, vždy treba zadať číselnú hodnotu")]
+        [Range(0, int.MaxValue, ErrorMessage = "Skúsenosti musia byť 0/viac")]
         public int CharExperiencePoints { get; set; }
 
-        [Required(ErrorMessage = "Maximalne zivoty su povinne")]
+        [Required(ErrorMessage = "Maximálne životy sú povinné")]
         [Range(1, 999, ErrorMessage = "Nemozes mat menej ako 0 maximalnych zivotov")]
         public int CharHitPointsMax { get; set; }
         //public int? CharHitPoints { get; set; }
-
-        [Range(0, 999, ErrorMessage = "Mana musi byt nezaporna, alebo 0")]
+        [Required(ErrorMessage ="Manu je potrebné zadať,treba zadať číselnú hodnotu ")]
+        [Range(0, 999, ErrorMessage = "Mana musí byť nezáporná, alebo 0")]
         public int CharManaMax { get; set; }
     }
 }

@@ -3,8 +3,10 @@
     ViewData["Title"] = "NewCharacter";
 
 }
-<div class="top-center-banner">
-    @ViewBag.UserName
+<div style="width: 100%; float: left;">
+    <div class="top-center-banner">
+        @ViewBag.UserName
+    </div>
 </div>
 <form asp-controller="Account" asp-action="NewCharacter" method="post">
 
