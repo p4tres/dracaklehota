@@ -1,0 +1,80 @@
+﻿@* toolbar *@
+
+<span class="badge" style="margin-right:10px;">Mirror screen</span>
+
+<div class="toolbar-inline">
+    <button id="btnModeCursor" class="tool-btn" title="Posun (cursor)">cursor</button>
+    <button id="btnModeAdd" class="tool-btn" title="Kresliť (add)">add</button>
+    <button id="btnModeErase" class="tool-btn" title="Guma (erase)">erase</button>
+    <label class="brush">
+        <span>hrúbka</span>
+        <input id="brushSizeNav" type="range" min="10" max="100" value="30" />
+        <span id="brushValNav">30</span>
+    </label>
+
+    <button id="btnOpen" class="btn" style="margin-left:8px;">Otvoriť obrázok</button>
+    <input id="fileInput" type="file" accept="image/*" style="display:none" />
+    <button id="btnPopup" class="btn secondary">Otvoriť 2. okno</button>
+</div>
+
+<script>
+    (function(){
+        const btnOpen   = document.getElementById('btnOpen');
+        const fileInput = document.getElementById('fileInput');
+        const btnPopup  = document.getElementById('btnPopup');
+
+        // upload obrázka
+        btnOpen?.addEventListener('click', () => fileInput?.click());
+        fileInput?.addEventListener('change', async (e) => {
+            const file = e.target.files?.[0];
+            if(!file) return;
+            const dataUrl = await new Promise(resolve => {
+                const r = new FileReader();
+                r.onload = () => resolve(r.result);
+                r.readAsDataURL(file);
+            });
+            window.dispatchEvent(new CustomEvent('image-selected', { detail: { src: dataUrl } }));
+            try { SyncBus.send({ type: 'image', payload: { src: dataUrl } }); } catch {}
+        });
+
+        // popup okno
+        btnPopup?.addEventListener('click', () => {
+            const w = Math.min(screen.availWidth, 1200);
+            const h = Math.min(screen.availHeight, 900);
+            const left = (window.screenX || 100) + 40;
+            const top  = (window.screenY || 100) + 40;
+
+            // route na area Mirror
+            window.open('@Url.Action("Popup", "Mirror", new { area = "Mirror" })',
+                'ImagePopup',
+                `popup=yes,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=${w},height=${h},left=${left},top=${top}`);
+        });
+
+        // wiring módov a štetca
+        const btnCursor = document.getElementById('btnModeCursor');
+        const btnAdd    = document.getElementById('btnModeAdd');
+        const btnErase  = document.getElementById('btnModeErase');
+        const slider    = document.getElementById('brushSizeNav');
+        const brushVal  = document.getElementById('brushValNav');
+
+        function activate(btn){
+            [btnCursor, btnAdd, btnErase].forEach(b => b?.classList.remove('active'));
+            btn?.classList.add('active');
+        }
+
+        btnCursor?.addEventListener('click', () => { ImageViewer.setMode('cursor'); activate(btnCursor); });
+        btnAdd?.addEventListener('click',    () => { ImageViewer.setMode('add');    activate(btnAdd);    });
+        btnErase?.addEventListener('click',  () => { ImageViewer.setMode('erase');  activate(btnErase);  });
+
+        slider?.addEventListener('input', () => {
+            brushVal.textContent = slider.value;
+            ImageViewer.setBrush(parseInt(slider.value, 10));
+        });
+        if (slider) {
+            brushVal.textContent = slider.value;
+            ImageViewer.setBrush(parseInt(slider.value, 10));
+        }
+
+        activate(btnCursor);
+    })();
+</script>

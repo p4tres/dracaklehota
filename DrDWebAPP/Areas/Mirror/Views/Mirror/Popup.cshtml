@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mirror Popup</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: #111;
+            color: #eee;
+        }
+
+        .viewport {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .image {
+            transform-origin: 0 0;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+    </style>
+    <script src="/mirror/js/sync.js"></script>
+    <script src="/mirror/js/viewer.js"></script>
+</head>
+<body>
+    <div id="viewport" class="viewport">
+        <img id="image" class="image" alt="obrázok" />
+    </div>
+
+    <script>
+        ImageViewer.mount({
+            elementIds: { viewport: 'viewport', image: 'image' },
+            role: 'follower'
+        });
+
+        ImageViewer.rehydrateFromStorage();
+
+        // Obrázok a zmeny ďalej prichádzajú z mastera
+        SyncBus.on((msg) => {
+            if (!msg) return;
+            if (msg.type === 'image' && msg.payload?.src) {
+                ImageViewer.load(msg.payload.src, /*broadcast*/ false);
+            }
+            // state/draw preberá interný handler vo viewer.js cez SyncBus.on
+        });
+    </script>
+</body>
+</html>

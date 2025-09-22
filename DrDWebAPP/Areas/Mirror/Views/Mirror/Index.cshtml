@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Mirror Screen";
+}
+
+@section MirrorToolbar {
+    @await Html.PartialAsync("_MirrorToolbarPartial")
+}
+
+<div id="viewerRoot" class="viewer-root">
+    <div id="help" class="help">
+        Koliesko = zoom, ťahanie (cursor) = posun, +/− = zoom, 0 = reset, šípky = posun.
+    </div>
+
+    <div id="viewport" class="viewport">
+        <img id="image" class="image" alt="obrázok" />
+    </div>
+</div>
+
+<script src="/mirror/js/sync.js"></script>
+<script src="/mirror/js/viewer.js"></script>
+<script>
+    ImageViewer.mount({
+        elementIds: { viewport: 'viewport', image: 'image' },
+        role: 'master'
+    });
+
+    window.addEventListener('image-selected', (e) => {
+        const src = e.detail?.src;
+        if (src) ImageViewer.load(src);
+    });
+
+    ImageViewer.setMode('cursor');
+</script>
+<link rel="stylesheet" href="/mirror/css/site.css" />
