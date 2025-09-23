@@ -471,3 +471,6 @@ C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\obj\Debug\net9.0\refint\DrDWeb
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\obj\Debug\net9.0\DrDWebAPP.pdb
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\obj\Debug\net9.0\DrDWebAPP.genruntimeconfig.cache
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\obj\Debug\net9.0\ref\DrDWebAPP.dll
+C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\obj\Debug\net9.0\compressed\idmo2ifao8-lucmls4ng7.gz
+C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\obj\Debug\net9.0\compressed\0g987ibiut-xb2kfhu5zu.gz
+C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\obj\Debug\net9.0\compressed\tmz5as7jhu-fjgqzakh48.gz

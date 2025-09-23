@@ -61,6 +61,9 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\mirror\css\site.css
+wwwroot\mirror\js\sync.js
+wwwroot\mirror\js\viewer.js
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\js\site.js
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\lib\jquery\dist\jquery.slim.min.map
@@ -123,3 +126,6 @@ C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\lib\bootstrap\dist\css
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\favicon.ico
 C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\css\site.css
+C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\mirror\css\site.css
+C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\mirror\js\sync.js
+C:\Users\zverp\githubrepos\dracaklehota\DrDWebAPP\wwwroot\mirror\js\viewer.js

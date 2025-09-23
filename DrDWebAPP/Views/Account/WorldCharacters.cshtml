@@ -8,6 +8,19 @@
         @ViewBag.UserName
     </div>
 </div>
+@if(TempData["CharName"] != null)
+{
+    <span class="alert text-danger">Problém pri ukladaní postavy: @TempData["CharName"]</span>
+    @if(TempData["HitPonitsError"] != null)
+    {
+        <spam class="alert text-danger">@TempData["HitPointsError"]</spam>
+    }
+    @if(TempData["ManaError"] != null)
+    {
+        <span class="alert text-danger">@TempData["ManaError"]</span>
+    }
+}
+
 <input type="hidden" name="UserType" value="2" />
 <table class="table table-hover">
     <thead>
@@ -58,20 +71,12 @@
                                 <p>Rasa: @ch.CharRace</p>
                                 <p>Profesia: @ch.CharProfession</p>
                                 <p>Maximálne Hit points: @ch.CharHitPointsMax<input type="number" name="CharHitPoints" value="@ch.CharHitPoints" /></p>
-                                @if (TempData["HitPointsError"] != null)
-                                {
-                                    <spam class="alert text-danger">@TempData["HitPointsError"]</spam>
-                                }
                                 <p>Level: <input type="number" name="CharLevel" value="@ch.CharLevel" /></p>
                                 <p>Experience Points: <input type="number" name="CharExperiencePoints" value="@ch.CharExperiencePoints" /></p>
                             </div>
                         </div>
                         <div style="max-width: 600px; margin: 2rem auto; text-align: center;">
                             <p>Maximálna Mana:@ch.CharManaMax <input type="number" name="CharMana" value="@ch.CharMana" /></p>
-                            @if (TempData["ManaError"] != null)
-                            {
-                                <span class="alert text-danger">@TempData["ManaError"]</span>
-                            }
                             <p>Zbrane: <input type="text" name="CharWeapons" value="@ch.CharWeapons" class="scroll-input"></p>
                             <p>Obranné predmety: <input type="text" name="CharDefense" value="@ch.CharDefense" class="scroll-input" /></p>
                             <p>Inventár: <input type="text" name="CharItems" value="@ch.CharItems" class="scroll-input" /></p>

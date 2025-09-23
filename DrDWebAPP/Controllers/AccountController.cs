@@ -202,20 +202,23 @@ namespace DrDWebAPP.Controllers
             if(change.CharMana > change.CharManaMax)
             {
                 TempData["ManaError"] = "Aktuálna mana nesmie byť väčšia ako maximálna mana";
+                TempData["CharName"] = change.CharName;
                 isError = true;
             }
 
-            if(change.CharHitPoints > change.CharManaMax)
+            if(change.CharHitPoints > change.CharHitPointsMax)
             {
                 TempData["HitPointsError"] = "Aktuálne životy nesmú byť väčšie ako maximálne životy";
+                TempData["CharName"] = change.CharName;
                 isError = true;
             }
             if (!isError)
             {
                 await _drdContext.SaveChangesAsync();
+                TempData["CharName"] = null;
             }
 
-                if (int.Parse(form["UserType"]) == 1)
+            if (int.Parse(form["UserType"]) == 1)
             {
                 return RedirectToAction("CharacterOverView", new { charID = charID });
             }
