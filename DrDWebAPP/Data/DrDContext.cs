@@ -12,14 +12,16 @@ namespace DrDWebAPP.Data;
 
     public DbSet<Dungeon> Dungeon { get; set; }
 
-    public DbSet<ProfessionAttributes> ProfessionAttributes { get; set; }
-    public DbSet<RaceAttributes> RaceAttributes { get; set; }
-    public DbSet<AttributesModifiers> AttributesModifiers { get; set; }
+    public DbSet<AttributesView> Attributes { get; set; }
+    //public DbSet<ProfessionAttributes> ProfessionAttributes { get; set; }
+    //public DbSet<RaceAttributes> RaceAttributes { get; set; }
+    //public DbSet<AttributesModifiers> AttributesModifiers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<RaceAttributes>().ToView(null);
-        modelBuilder.Entity<AttributesModifiers>().ToView(null);
-        modelBuilder.Entity<ProfessionAttributes>().ToView(null);
+        //modelBuilder.Entity<RaceAttributes>().ToView(null);
+        //modelBuilder.Entity<AttributesModifiers>().ToView(null);
+        //modelBuilder.Entity<ProfessionAttributes>().ToView(null);
+        modelBuilder.Entity<AttributesView>().HasNoKey().ToView("AttributesView");
     }
-    }
+}

@@ -2,10 +2,12 @@
 using DrDWebAPP.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Client;
+using System.ComponentModel;
 using System.Diagnostics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -136,6 +138,58 @@ namespace DrDWebAPP.Controllers
                 HttpOnly = true,
                 IsEssential = true
             });
+            //var professionAtt = _drdContext.ProfessionAttributes.Find(atributesExists.CharProfession);
+            //var raceAtt = _drdContext.RaceAttributes.Find(atributesExists.CharRace);
+            //var attMod = _drdContext.AttributesModifiers.Find(atributesExists.CharRace);
+
+            //string[] attList = ["Strength", "Endurance", "Dexterity", "Charisma", "Intelligence"];
+            
+            ////Dictionary<string, int[]> attValues = new Dictionary<string, int[]>();
+
+            ////var professionAtt = _drdContext.ProfessionAttributes.Find(atributesExists.CharProfession);
+
+            //var attValuesDic = new Dictionary<string, int[]>();
+
+            //if (professionAtt != null)
+            //{
+            //    var properties = professionAtt.GetType().GetProperties();
+
+            //    foreach (var prop in properties)
+            //    {
+            //        if (attList.Contains(prop.Name))
+            //        {
+            //            var value = prop.GetValue(professionAtt)?.ToString();
+
+            //            if (!string.IsNullOrWhiteSpace(value) && value.ToLower() != "null")
+            //            {
+            //                try
+            //                {
+            //                    var parts = value.Split('-');
+            //                    if (parts.Length == 2 &&
+            //                        int.TryParse(parts[0], out int from) &&
+            //                        int.TryParse(parts[1], out int to))
+            //                    {
+            //                        attValuesDic.Add(prop.Name, Enumerable.Range(from, to - from + 1).ToArray());
+            //                    }
+            //                }
+            //                catch (Exception ex)
+            //                {
+            //                    Console.WriteLine($"Chyba pri spracovaní atribútu {prop.Name}: {ex.Message}");
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+
+            //foreach (var att in attList)
+            //{
+            //    if(attValuesDic.ContainsKey(att))
+            //    {
+            //        attValuesDic.
+            //    }
+            //}
+
+
 
             return View();
         }
@@ -155,6 +209,8 @@ namespace DrDWebAPP.Controllers
             {
                 return NotFound("Postava sa nenasla");
             }
+            var attModel = await _drdContext.Attributes.FirstOrDefaultAsync(x => x.RaceAttributesID == existing.CharRace && x.ProfessionAttributesID == existing.CharProfession);
+
             existing.CharAgility = characterAttr.CharAgility;
             existing.CharInteligent = characterAttr.CharInteligent;
             existing.CharStrenght = characterAttr.CharStrenght;
